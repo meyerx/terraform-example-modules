@@ -31,6 +31,13 @@ resource "aws_autoscaling_group" "webserver" {
   min_size = var.min_instance
   max_size = var.max_instance
 
+  instance_refresh {
+    strategy = "Rolling"
+    preferences {
+      min_healthy_percentage = 50
+    }
+  }
+
   tag {
     key                 = "Name"
     value               = var.cluster_name
