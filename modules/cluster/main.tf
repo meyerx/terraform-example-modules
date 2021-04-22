@@ -27,6 +27,7 @@ resource "aws_autoscaling_group" "webserver" {
   vpc_zone_identifier  = var.subnet_ids
   target_group_arns    = [aws_lb_target_group.autoscaling_group.arn]
   health_check_type    = "ELB"
+  health_check_grace_period = 30
 
   min_size = var.min_instance
   max_size = var.max_instance
@@ -34,6 +35,7 @@ resource "aws_autoscaling_group" "webserver" {
   instance_refresh {
     strategy = "Rolling"
     preferences {
+      instance_warmup        = var.instance_warmup
       min_healthy_percentage = 50
     }
   }

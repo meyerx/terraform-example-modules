@@ -69,3 +69,15 @@ variable "max_instance" {
     error_message = "There must be at most 10 instances."
   }
 }
+
+# ---------------------------------------------------------------------------------------------------------------------
+# OPTIONAL PARAMETERS
+# You can provide a value for each of these parameters.
+# ---------------------------------------------------------------------------------------------------------------------
+
+
+variable "instance_warmup" {
+  description = "The number of seconds until a newly launched instance is configured and ready to use."
+  type        = number
+  default     = 300
+}
